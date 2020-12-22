@@ -1,2 +1,1 @@
-# blinky
-neopixels for lucy
+### blinky - neopixels for lucy
