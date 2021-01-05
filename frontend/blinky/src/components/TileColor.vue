@@ -7,27 +7,25 @@
   >
     <v-container fluid>
       <v-row justify="center">
-        <v-div>{{selected}}</v-div>
+        <div>{{selected}}</div>
       </v-row>
       <v-row dense>
-        <v-col
+        <v-col cols="2"
           v-for="(color, idx) in colors" :key="`fruit-${idx}`"
         >
         <v-card v-if="! dark_colors.includes(color)"
           :color="color"
-          class="ma-3 black--text align-end"
-          width="250"
-          height="250"
-          @click="selected=color"
+          class="black--text align-end"
+          height="200"
+          @click="setColor(color)"
           elevation="2">
             <v-card-title v-text="color" ></v-card-title>
           </v-card>
         <v-card v-else
           :color="color"
-          class="ma-3 white--text align-end"
-          width="250"
-          height="250"
-          @click="selected=color"
+          class="white--text align-end"
+          height="200"
+          @click="setColor(color)"
           elevation="2">
             <v-card-title v-text="color" ></v-card-title>
           </v-card>
@@ -40,8 +38,9 @@
 </template>
 
 <script>
+  import axios from 'axios'
   const COLORS = [
-    'blue', 'orange', 'brown', 'red', 'green', 'white', 'yellow', 'lime', 'black', 'blue darken-4', 'grey', 'teal'
+    'blue', 'orange', 'brown', 'red', 'green', 'white', 'yellow', 'lime', 'black', 'grey', 'teal'
   ]
 
   export default {
@@ -50,5 +49,12 @@
       colors: COLORS,
       dark_colors: ['black', 'blue darken-4', 'brown']
     }),
+    methods: {
+      setColor: function (color) {
+        this.selected=color
+        
+        axios.post(`http://0.0.0.0:8127/color?color=${color}`)
+      }
+    } 
   }
 </script>

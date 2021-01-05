@@ -12,19 +12,19 @@
     </v-app-bar>
 
     <v-main>
-      <HelloLucy/>
+      <TileColor/>
     </v-main>
   </v-app>
 </template>
 
 <script>
-import HelloLucy from './components/HelloLucy';
+import TileColor from './components/TileColor';
 
 export default {
   name: 'App',
 
   components: {
-    HelloLucy,
+    TileColor,
   },
 
   data: () => ({
